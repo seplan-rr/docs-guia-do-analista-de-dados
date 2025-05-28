@@ -33,3 +33,11 @@ Essa forma de extrair dados tem que interagir com a área intermediária, acresc
 **Exemplos**
 
 - Consulta de novos relatórios do [SICONFI](https://siconfi.tesouro.gov.br/siconfi/index.jsf) a cada bimestre/quadrimestre
+
+## Completa
+
+A extração completa coleta todos os dados, independente de terem sido alterados ou não, a fim de carregá-los na área intermediária. Essa operação costuma ser mais custosa conforme o volume de dados aumenta.
+
+**Exemplos**
+
+- Coleta do arquivo CSV das emendas parlamentares individuais e de bancada do [Tesouro Nacional](https://www.tesourotransparente.gov.br/ckan/dataset/emendas-parlamentares-individuais-e-de-bancada), onde os dados são acrescentados ao final do arquivo periodicamente
