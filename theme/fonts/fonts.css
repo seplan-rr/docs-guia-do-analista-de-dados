@@ -1,0 +1,95 @@
+/* Source Code Pro is under the Open Font License. See https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL */
+
+@font-face {
+  font-family: 'Parkinsans';
+  src: local('Parkinsans'), local('Parkinsans'),
+    url('../fonts/Parkinsans-VariableFont_wght.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Parkinsans Light'), local('Parkinsans-Light'),
+    url('../fonts/Parkinsans-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Parkinsans Light'), local('Parkinsans-Light'),
+    url('../fonts/Parkinsans-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Parkinsans Regular'), local('Parkinsans-Regular'),
+    url('../fonts/Parkinsans-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Parkinsans'), local('Parkinsans-Regular'),
+    url('../fonts/Parkinsans-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Parkinsans SemiBold'), local('Parkinsans-SemiBold'),
+    url('../fonts/Parkinsans-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Parkinsans SemiBold'), local('Parkinsans-SemiBold'),
+    url('../fonts/Parkinsans-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Parkinsans Bold'), local('Parkinsans-Bold'),
+    url('../fonts/Parkinsans-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Parkinsans Bold'), local('Parkinsans-Bold'),
+    url('../fonts/Parkinsans-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Parkinsans ExtraBold'), local('Parkinsans-ExtraBold'),
+    url('../fonts/Parkinsans-ExtraBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Parkinsans';
+  font-style: italic;
+  font-weight: 800;
+  src: local('Parkinsans ExtraBold '), local('Parkinsans-ExtraBold'),
+    url('../fonts/Parkinsans-ExtraBold.woff2') format('woff2');
+}
+
+/* source-code-pro-500 - latin_vietnamese_latin-ext_greek_cyrillic-ext_cyrillic */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/source-code-pro-v11-all-charsets-500.woff2') format('woff2');
+}

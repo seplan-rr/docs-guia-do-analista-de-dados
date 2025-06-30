@@ -1,12 +1,22 @@
 [book]
 authors = ["Eduardo Henrique Freire Machado"]
 language = "pt-br"
+multilingual = false
 src = "src"
 title = "Guia do Analista de Dados da SEPLAN/RR"
 description = "Guia do analista de dados da SEPLAN/RR, com foco em automatização e web scraping."
 
 [output.html]
+additional-js = ["theme/remove-theme-selector.js"]
+default-theme = "light"
+preferred-dark-theme = "light"
+no-selection-label = true
 git-repository-url = "https://github.com/seplan-rr/guia-do-analista-de-dados"
 git-repository-icon = "fa-github"
 edit-url-template = "https://github.com/seplan-rr/guia-do-analista-de-dados/edit/main/{path}"
 input-404 = "404.md"
+hash-files = true
+
+[output.html.font]
+enable = true
+woff = true
