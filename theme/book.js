@@ -1,4 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  themeToggle = document.getElementById("theme-toggle");
+  themeToggle = document.getElementById("mdbook-theme-toggle");
   themeToggle.remove();
 })

@@ -11,6 +11,7 @@
   --mono-font: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace, monospace;
   --code-font-size: 0.875em;
   /* please adjust the ace font size accordingly in editor.js */
+  --searchbar-margin-block-start: 2px;
 }
 
 /* Themes */
@@ -27,13 +28,12 @@ html:not(.js) {
   --sidebar-bg: #0d6abf;
   --sidebar-fg: #edf0f5;
   --sidebar-non-existant: #3c83c6;
-  --sidebar-active: #1061b2;
+  --sidebar-active: #f8f9fd;
   --sidebar-spacer: #3c83c6;
 
   --scrollbar: #1061b2;
 
   --icons: #0d6abf;
-  --icons-nav: #f8f9fd;
   --icons-hover: #242038;
 
   --links: #0d6abf;
@@ -65,9 +65,17 @@ html:not(.js) {
   --color-scheme: light;
 
   /* Same as `--icons` */
-  --copy-button-filter: invert(45.49%);
+  --copy-button-filter: invert(26%) sepia(8%) saturate(575%) hue-rotate(169deg) brightness(87%) contrast(82%);
   /* Same as `--sidebar-active` */
-  --copy-button-filter-hover: invert(14%) sepia(93%) saturate(4250%) hue-rotate(243deg) brightness(99%) contrast(130%);
+  --copy-button-filter-hover: invert(36%) sepia(70%) saturate(503%) hue-rotate(167deg) brightness(98%) contrast(89%);
 
   --footnote-highlight: #0d6abf;
+
+  --blockquote-note-color: #4493f8;
+  --blockquote-tip-color: #08ae08;
+  --blockquote-important-color: #ab7df8;
+  --blockquote-warning-color: #d29922;
+  --blockquote-caution-color: #d91b29;
+
+  --sidebar-header-border-color: #3c83c6;
 }
