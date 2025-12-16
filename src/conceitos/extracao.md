@@ -41,3 +41,4 @@ A extração completa coleta todos os dados, independente de terem sido alterado
 **Exemplos**
 
 - Coleta do arquivo CSV das emendas parlamentares individuais e de bancada do [Tesouro Nacional](https://www.tesourotransparente.gov.br/ckan/dataset/emendas-parlamentares-individuais-e-de-bancada), onde os dados são acrescentados ao final do arquivo periodicamente
+
