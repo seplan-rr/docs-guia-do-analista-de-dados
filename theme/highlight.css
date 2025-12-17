@@ -1,6 +1,7 @@
 code.hljs {
   color: #4c4f69;
-  background: #eff1f5
+  background: #eff1f5;
+  overflow-x: auto;
 }
 
 .hljs-keyword {
