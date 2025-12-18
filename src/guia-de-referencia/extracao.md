@@ -1,42 +1,61 @@
 # Extração
+
+> Esta página ainda está sendo construída. Se quiser contribuir com o guia,
+> acesse o nosso [repositório].
  
-## Formas de consumir arquivos CSV
+## Consumo de Arquivos CSV
 
-Arquivos CSV são compatíveis com diversos software de leitura de planilha, o Excel sendo o mais comum. Porém quando trabalhamos com automação, muitas vezes é mais interessante manipular o CSV através do pandas, já aplicando certos filtros. 
+Arquivos CSV são compatíveis com diversos *softwares* de leitura de planilha,
+como Microsoft Excel e LibreOffice Calc. Porém, quando trabalhamos com
+automação, temos que manipular os arquivos através de código, usando bibliotecas
+como `pandas` e `polars`. Assim, temos alguns comandos básicos abaixo:
 
-Algumas sintaxes e parâmetros para manipulação de CSV a seguir:
-
-Abrir e ler o arquivo em um dataframe, mostrando só as primeiras linhas
+### Abrir o Arquivo CSV como DataFrame, Mostrando Suas Primeiras Linhas
 
 ```python
 import pandas as pd
 
-df=pd.read_csv('arquivo.csv')
-
-#.head mostra só as primeiras linhas
+df = pd.read_csv("arquivo.csv")
 print(df.head())
 ```
 
-Filtrar colunas específicas do dataframe
+### Filtrar Colunas Específicas de um DataFrame
 
 ```python
-#define as colunas para ler
-usecols= ['id','nome','host_id','bairro','tipo_de_quarto','preco','estadia_minima']
+cols = [
+  "id",
+  "nome",
+  "host_id",
+  "bairro",
+  "tipo_de_quarto",
+  "preco",
+  "estadia_minima",
+]
 
-hotel_data = pd.read_csv('data/listing.csv', index_col='id', usecols=usecols)
-
-print(hotel_data.head())
+hotel_data = pd.read_csv(
+  "hotel_data.csv",
+  usecols=cols,
+)
 ```
 
-Outros parâmetros
+### Outras Parâmetros de Leitura do Arquivo
 
 ```python
-#Declara o separador usado para ler os dados do csv, o padrão é a vírgula, mas você encontrará arquivos que utilizam outros
-pd.read_csv('data.csv', sep=';')
+# Declara o separador usado para ler os dados do CSV (O separador padrão é a
+# vírgula)
+pd.read_csv("data.csv", sep=";")
 
-#Declara a linha que será utilizada como header da planilha, o padrão é 0
-pd.read_csv('data.csv', header=3)
+# Declara a linha que será utilizada como cabeçalho do DataFrame (A linha padrão
+# é a primeira)
+pd.read_csv("data.csv", header=3)
 
-#Define o datatype para os dados ou colunas
-pd.read_csv('data.csv', dtype={'id':int, 'price':float})
+# Declara o tipo dos dados nas colunas do DataFrame. Não é aconselhável utilizar
+# os tipos padrão do Python, como int ou float, mas sim os tipos anuláveis
+# (nullable) indicados na documentação do pandas, como "Int64" e "Float64"
+pd.read_csv("data.csv", dtype={
+  "id": "Int64",
+  "price": "Float64",
+})
 ```
+
+[repositório]: https://github.com/seplan-rr/guia-do-analista-de-dados
