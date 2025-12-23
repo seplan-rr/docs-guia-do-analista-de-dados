@@ -4,15 +4,20 @@
 > acesse o nosso [repositório].
 
 O XLS é um dos formatos mais comuns e antigos de planilha, pois é o padrão dos 
-arquivos feitos no Excel, XLS signifca 'planilha Excel'. É importante entender 
+arquivos feitos no Excel, XLS significa 'planilha Excel'. É importante entender 
 o funcionamento e os seus contrastes com o XLSX, uma versão mais nova e diferente.
 Neste artigo discutiremos diversos elementos como suas [estruturas](#estruturas) e [peculiaridades](#peculiaridades).
+
+De forma geral, os arquivos XLSX/XLS são [menores] que outras extensões de planilha,
+isso ocorre pois o XLSX é um formato de arquivo comprensado (zipado) com vários 
+[XMLs] dentro, diferente do CSV, cujo arquivo é somente a planilha, sem utilzar 
+métodos de compressão.
 
 ## Estruturas
 
 O XLSX/XLS é um formato de arquivo definido por uma coleção de estruturas que formam um 
 conteúdo [workbook], diferente do csv, que seria uma única planilha, esta extensão
-pode incluir múltiplas tabelas e planilhas de conteúdo estruturado ou ssemi-estruturado.
+pode incluir múltiplas tabelas e planilhas de conteúdo estruturado ou semi-estruturado.
 
 ### Planinlhas e abas
 
@@ -22,15 +27,15 @@ se afirmar que o workbook é o conjunto e os sheets são as páginas.
 
 - **Sheets**: Seriam as páginas que formam um workbook, podem conter diversos tipos de informação 
 como tabelas, textos, gráficos, fórmulas, etc. Cada sheet é formado por um [grid], assim
-todas abas são como matrizes.
+todas as abas são como matrizes.
 
-- **Células**: A menor unidade presente numa aba XLSX, aqui é armazenado uma unidade de
+- **Células**: A menor unidade presente numa aba XLSX, aqui é armazenada uma unidade de
 qualquer tipo de informação, em um CSV seria como qualquer dado entre dois separadores. 
 
 
 ### Diferenças entre XLS e XLSX
 
-O XLS é o formato original de planilha desenvolvido pela microsoft no final dos anos 80 e 
+O XLS é o formato original de planilha desenvolvido pela Microsoft no final dos anos 80 e 
 foi então incorporado pelo Excel, a extensão é usada para todas versões do Excel pré 2007. 
 Seus dados são codificados de tal maneira que podem haver incompatibilidades com softwares 
 mais modernos. O XLSX é uma adaptação moderna do XLS, baseada no formato XML, com mais 
@@ -41,13 +46,13 @@ capacidade e melhor compressão de dados.
 - **XLSX**: Capacidade de 1.048.576 linhas e 16.384 colunas.
 
 De modo geral, o XLSX é menos provável de corromper, também pode ter arquivos menores, 
-mas caso não sejam esses benefícios não sejam necessários e você já possui o arquivo em 
+mas caso esses benefícios não sejam necessários e você já possui o arquivo em 
 XLS, não há necessidade de converter para o XLSX.
 
 
 ## Peculiaridades
 
-Existem diversas formas alteram toda a estrutura de um XLSX/XLS em contraste com um CSV, 
+Existem diversas formas que alteram toda a estrutura de um XLSX/XLS em contraste com um CSV, 
 como seria o [VBA](#vba), que altera toda a maneira em que o coletor de dados deve interagir com 
 o arquivo, ou também algumas peculiaridades inerentes ao formato que limitam o uso de 
 [chunking/streaming](#chunking-e-streaming).
@@ -59,11 +64,11 @@ utilizar a técnica de chunking/streaming, onde somente "pedaços" do arquivo s�
 assim aliviando a CPU, a memória e facilitando o trabalho a ser feito no arquivo, porém em
 contraste com o [CSV](./csv.md), essa técnica é muito mais difícil de ser implementada no XLSX/XLS. 
 
-O formato XLSX/XLS é essencialmente um vários XMLs zipados (sheet1.xml, styles.xml...) por 
-isso, é muito difícil aplicar técnicas de chunking e streaming, pois é preciso descompactar e 
-parsear o XML sequencialmente, ao invés de ler linha por linha, essa decompressão é então 
-armazenada as linhas na memória e então processa a lógica escrita, ou seja é muito capaz 
-de ocorrer uma sobrecarga de memória.
+O formato XLSX/XLS é essencialmente vários XMLs zipados (sheet1.xml, styles.xml...) e por 
+isso é muito difícil aplicar técnicas de chunking e streaming, porque é preciso descompactar e 
+[parsear] o XML sequencialmente, ao invés de ler linha por linha. Essa decompressão é então 
+armazenada em memória e a lógica escrita é processada. Assim, é possível que haja  uma sobrecarga 
+de memória.
 
 ### VBA
 
@@ -84,3 +89,6 @@ em conta.
 [grid]: https://www.w3schools.com/excel/excel_format_grids.php
 [repositório]: https://github.com/seplan-rr/guia-do-analista-de-dados
 [etc]:https://www.techtudo.com.br/dicas-e-tutoriais/2022/12/o-que-e-vba-no-excel-e-como-usar-veja-exemplos-comandos-e-tutorial.ghtml
+[parsear]:https://netenrich.com/fundamentals/parsing
+[menores]: https://medium.com/@ArgyleStreetProgramming/why-storing-data-in-excel-is-better-than-in-csv-4dcf6a8d2819
+[XMLs]: https://www.freecodecamp.org/portuguese/news/o-que-e-um-arquivo-xml-como-abrir-arquivos-xml-e-quais-sao-os-melhores-editores-de-xml/
