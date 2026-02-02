@@ -16,7 +16,7 @@
     - [CSV](./conceitos/extracao/arquivos-estruturados/csv.md)
     - [XLS ou XLSX]()
     - [JSON]()
-    - [XML]()
+    - [XML](./conceitos/extracao/arquivos-estruturados/xml.md)
   - [Arquivos Não Estruturados]()
     - [PDF]()
     - [Texto]()
