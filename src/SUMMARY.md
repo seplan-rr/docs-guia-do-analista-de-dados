@@ -18,7 +18,7 @@
     - [JSON]()
     - [XML]()
   - [Arquivos Não Estruturados]()
-    - [PDF]()
+    - [PDF](./conceitos/extracao/arquivos-nao-estruturados/pdf.md)
     - [Texto]()
 - [Transformação]()
   - [Limpeza de Dados]()
