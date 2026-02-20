@@ -72,7 +72,13 @@ ao servidor o que espera ser feito com as informações presentes nas requests.
 
 Existem diversos protocolos para os métodos de uma API, o mais relevante para nosso 
 trabalho seriam as APIs [REST](./api/rest.md), que resumidamente, são APIs criadas 
-no intuito de serem utilizadas em uma aplicação.
+no intuito de serem utilizadas em uma aplicação. Os métodos em si porém são comumente
+os HTTP, pense neles como os **verbos** utilizados numa conversa, na comunicação web
+utilizamos métodos específicos para diferentes operações (buscar, criar, deletar, etc).
+
+Cada método tem uma função específica e é projetado para realizar determinada operação de
+forma eficaz e segura. Elaboramos mais sobre os tipos específicos de operação e métodos
+HTTP [aqui](./api/rest.md#rest-e-http). APIs e métodos HTTP são conceitos não concorrentes, mas complementares.
 
 <!-- Mudada a estrutura, cortando a seção de peculiaridades e mantendo somente Documentação e Arquitetura -->
 ## Documentação

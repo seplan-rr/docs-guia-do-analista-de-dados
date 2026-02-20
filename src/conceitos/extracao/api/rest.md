@@ -37,6 +37,27 @@ operações [CRUD](https://medium.com/geekculture/crud-operations-explained-2a44
 - **HEAD**: Devolve os headers de um recurso sem o body.
 <!--Adicionar fonte definindo headers e body? Entendo como desnecessário-->
 
+**Header** é talvez o componente mais importante para o analista poder compreender a API 
+que está trabalhando, pois neles estão presentes muitas informações sobre o conteúdo da 
+resposta e o acesso, a seguir algumas informações que se encontra nos headers de uma 
+API:
+
+- **Autenticação**: Carregam credenciais como API *Keys*, *tokens*, dentre outros. Servem
+para verificar a identidade do usuário e filtrar o acesso a certos recursos.
+
+- **Formatação de dados**: `Content-type` informa o servidor sobre o formato de dado sendo
+enviado ou o tipo que o cliente aceita receber. Garante que as informações possam ser corretamente
+processadas e interpretadas.
+
+- **Caching**: Provêm diretivas sobre mecanismos de cache, ajuda a reduzir carga no servidor.
+
+- **Encoding**: Informa quais algoritmos de criptografia são utilizados na requisição e
+resposta
+
+- **User-Agent**: Observa qual cliente utilizado na requisição, como celular, navegador e
+etc.
+
+
 ### Princípios da arquitetura REST
 
 #### Interface uniforme
@@ -95,103 +116,17 @@ cliente e a aplicação do servidor não se conectam diretamente. Dependendo da 
 existir qualquer quantidade de intermediários no processo de comunicação.
 
 
-## Como consumir APIs REST
-<!--correção de concordância-->
-APIs REST são compatíveis com diversas linguagens de programação e também frameworks
-interativos como o [swagger](../api.md#swagger), no caso da prensença destes frameworks
-de documentação é muito facilitado o trabalho para a compreensão do funcionamento da API.
-Porém de modo geral se utiliza de código e bibliotecas como `pandas` para armazenar os 
-dados requisitados. 
+### Exemplos de clientes para consumir APIs Rest
 
-A seguir alguns exemplos iniciais para auxiliar no consumo da API:
-
-#### Abrir o endpoint e criar um dataframe
-<!--Explicar melhor a função de cada um-->
-```python
-import requests
-import pandas as pd
-from pandas import json_normalize
-
-url = "https://api.exemplo.gov.br/v1/recursos"
-params = {"ano": 2023, "uf": "SP", "limit": 100}  # filtros no servidor
-headers = {"Accept": "application/json", "Authorization": "Bearer " + TOKEN}
-
-resp = requests.get(url, params=params, headers=headers, timeout=30)
-resp.raise_for_status()
-data = resp.json()  # se for JSON
-
-# Se a resposta for uma lista de objetos planos:
-df = pd.DataFrame(data)
-print(df.head())
-
-# Se a resposta for objeto com campo "items" que contém a lista:
-df = pd.DataFrame(data["items"])
-print(df.head())
-
-# Se houver estrutura aninhada, use json_normalize:
-df = json_normalize(data, record_path="items", meta=["ano", "uf"], errors="ignore")
-print(df.head())
-
-```
-#### Lidando com paginação
-[Paginação] é o mecanismo pelo qual uma API divide grandes conjuntos de dados em partes
-(páginas) menores. Existe para facilitar cache, melhorar latência, proteger o servidor
-e permitir controle de carga. Processar incorretamente a paginação de uma API REST
-devolve o dataset incompleto, comprometendo sua análise.
-<!--Definir isso aqui-->
-```python
-import time
-
-def fetch_allpagelimit(base_url,params,headers,page_param="page",limit_param="limit"):
-    page = 1
-    all_items = []
-    while True:
-        params.update({page_param: page, limit_param: 500})
-        resp = requests.get(base_url, params=params, headers=headers, timeout=30)
-        if resp.status_code == 429:
-            retry = int(resp.headers.get("Retry-After", 5))
-            time.sleep(retry)
-            continue
-        resp.raise_for_status()
-        payload = resp.json()
-        items = payload.get("items") or payload  # adapta conforme API
-        if not items:
-            break
-        all_items.extend(items)
-        # condição de parada: quando menos do que o limite ou campo next absent
-        if len(items) < params[limit_param]:
-            break
-        page += 1
-        time.sleep(0.1)  # comportamento educado: evita bursts
-    return pd.DataFrame(all_items)
-
-df = fetch_all_page_limit(url, params={"ano":2023}, headers=headers)
-
-```
-
-#### Lendo um endpoint que já retorna um CSV
-```python
-from io import StringIO
-
-csv_url = "https://api.exemplo.gov.br/v1/export?formato=csv&ano=2023"
-resp = requests.get(csv_url, headers=headers, timeout=60)
-resp.raise_for_status()
-df_csv = pd.read_csv(StringIO(resp.text), sep=",") 
-print(df_csv.head())
-
-```
-### Clientes para consumir APIs Rest
-
-
-### Exemplos
-Qualquer demanda que exija dados retirados de planilhas governamentais,
-disponíveis no [gov.br], precisará na maioria dos casos utilizar as APIs 
-REST disponíveis na plataforma para obter as informações desejadas.
+Qualquer demanda que exija dados retirados de planilhas governamentais, disponíveis no 
+[gov.br], precisará na maioria dos casos utilizar as APIs REST disponíveis na plataforma para 
+obter as informações desejadas. O [SICONFI] por exemplo, utiliza de APIs em suas requisições
+de dados.
 
 
 
+[SICONFI]: https://www.gov.br/conecta/catalogo/apis/siconfi-extratos-das-declaracoes-contabeis
 [gov.br]: https://www.gov.br/conecta/catalogo/
-[Paginação]: https://thiagolima.blog.br/parte-5-pagina%C3%A7%C3%A3o-ordena%C3%A7%C3%A3o-e-filtros-em-apis-restful-3045d88b4114
 [cliente-servidor]:https://medium.com/@brijesh.sriv.misc/the-client-server-model-backbone-of-modern-networking-318f46310a35
 [URI]: https://developer.mozilla.org/en-US/docs/Web/URI
 [HTTP]: https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/

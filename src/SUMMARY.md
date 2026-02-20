@@ -10,7 +10,7 @@
     - [Ética e Legalidade]()
   - [API](./conceitos/extracao/api.md)
     - [REST e RESTFUL](./conceitos/extracao/api/rest.md)
-    - [GraphQL](./conceitos/extracao/api/graphql.md)
+    - [GraphQL]()
   - [Banco de Dados]()
   - [Arquivos Estruturados]()
     - [CSV](./conceitos/extracao/arquivos-estruturados/csv.md)
