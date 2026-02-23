@@ -36,6 +36,7 @@
   - [Identificação de Necessidades de Negócio]()
   - [Definição de Métricas e KPIs]()
 - [Extração](./guia-de-referencia/extracao.md)
+    - [XML](./guia-de-referencia/extracao/xml.md)
     - [API Pública]()
     - [Bases de Dados]()
     - [Servidor de Arquivos Estáticos]()

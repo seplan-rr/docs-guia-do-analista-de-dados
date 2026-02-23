@@ -13,7 +13,7 @@ particularidades na [estrutura](#estrutura) e [consumo de documentos XML](#consu
 A propriedade chave que define o XML é que dados nele se "auto-definem" através de etiquetas. 
 Significando que a estrutura e contexto dos dados são atrelados dentro do dado em 
 si. Por exemplo ao invés de simplesmente armazenar "Daniel" como texto simples, então o 
-XML armazena como `<to>Daniel<to>`, imediatamente informando o dev que "Daniel" é um 
+XML armazena como `<to>Daniel</to>`, imediatamente informando o dev que "Daniel" é um 
 receptor de algo.   
 
 Essa estrutura auto-definida combate um problema crítico no desenvolvimento de software:
@@ -125,22 +125,25 @@ para [JSON](json.md) pois cada elemento se torna um objeto. Todavia o *CE* acaba
 arquivo XML mais verboso e extenso, dificultando um pouco a leitura para pessoas, além
 de que se usado de forma exagerada, cria um documento mais pesado.
 
+### XHTML
 
-## Consumir XMLs
-<!-- https://www.ibm.com/docs/en/streamsets-legacy-chcloud?topic=formats-reading-processing-xml-data -->
-Existem diversas formas de consumir arquivos XML, o maior fator do método utilizado seria 
-o quão bem formado é o arquivo, isso é, respeita as regras estruturais do XML, parsers padrão 
-podem ser utilizados para interpretar a hierarquia e transformar os dados em estruturas 
-manipuláveis. Entretanto, na prática é comum lidar com XMLs malformados ou datados, oriundos
-de sistemas legado por exemplo. Nestes casos, é necessário tratar o conteúdo como texto, aplicando
-delimitadores ou outros processos de limpeza.
+Extensible Hypertext Markup Language, o XHTML, é o formato ponte entre o HTML e o XML. 
+Imagine-o como um método mais preciso de programação web, pois é mais restrito e deve
+ter suas regras seguidas à risca. Criado para ser mais versátil ao lidar com diferentes
+formatos de dados como XML. Sua sintaxe é deveras similar a do HTML, porém com algumas 
+restrições e obrigações, como a necessidade de declaração do *DOCTYPE*, *case sensitivity*, 
+diferenças no fechamento de tags, entre [outros].
+
+Importante para o estudo do analista pois, apesar de não serum formato muito relevante
+nos dias de hoje, é muito presente em sistemas legado como alguns portais governamentais
+e ambientes com uso pesado de XML. Pelo menos por contextualização histórica, ém importante
+o estudo do XHTML.
 
 
 
 
 
-
-
+[outros]: https://www.w3schools.com/html/html_xhtml.asp
 [repositório]: https://github.com/seplan-rr/guia-do-analista-de-dados
 [parsing]: https://developer.mozilla.org/en-US/docs/Glossary/Parse
 [marcação]: https://www.lenovo.com/us/en/glossary/markup-language/?orgRef=https%253A%252F%252Fwww.google.com%252F&srsltid=AfmBOoqRnFvvxE9g28ZML5iWcitHUCUX42QBg0KXCxGfy_fAB1yr50xY
