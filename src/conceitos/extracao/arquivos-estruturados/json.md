@@ -16,17 +16,14 @@ APIs REST, serviços governamentais, plataformas digitais, dentre outros, todos 
 entregam seus dados em JSON.
 
 Exploraremos todas as parculiaridades do JSON que possam ser relevantes ao dia a dia do
-analista, em particular sua [estrutura](#estrutura) e [como consumir arquivos JSON](#como-consumir-json).
+analista, em particular sua [estrutura](#estrutura).
 
 ## Estrutura
 <!--https://www.codecademy.com/article/what-is-json-->
 O JSON é oriundo da linguagem Javascript (JS), ou seja sua aparência é similar a objetos JS. 
 Abaixo observamos um exemplo de objeto em JSON:
 
-<span id="codigo_exemplo"></span>
-
 ```JSON
-
 {
     "estudante":{
         "nome": "Raissa Medeiros",
@@ -64,54 +61,103 @@ estejam familiarizados somente com o JS cometam erros sem perceber, no código a
 destacamos alguns erros recorrentes que podem aparecer em JSON:
 
 ```JSON
-1   {
-2       "nome": 'Frida',
-3       "endereco": {
-4       "trabalho": null, ///não paga aluguel também
-5       "casa": "cruviana",
-6        },
-7    "amigos": [
-8         {
-9            "nome": "Coutinho",
-10           "hobbies": ["futebol", "leitura", "filmes",]
-11        }
-12    ]
-13 }
+   {
+       "nome": 'Frida',
+       "endereco": {
+       "trabalho": null, ///não paga aluguel também
+       "casa": "cruviana",
+        },
+    "amigos": [
+         {
+            "nome": "Coutinho",
+            "hobbies": ["futebol", "leitura", "filmes",]
+         }
+     ]
+  }
 ```
-- Na linha 2 'Frida' está contido em aspas simples, não permitido no JSON, sempre
+- 'Frida' está contido em aspas simples, não permitido no JSON, sempre
 deve ser usado as aspas duplas `""`.
 
-- Linha 4 tem a presença de um comentário, comentários não são permitidos pelo JSON.
+- Observe presença de um comentário, comentários não são permitidos pelo JSON.
 
-- Presente na linha 5 temos uma vírgula final, ou seja que existe depois do último 
-elemento de uma lista, proibido no JSON. O mesmo problema é presente na linha 10, onde
-a vírgula final existe no final de um array.
+- Presente no documento temos uma vírgula final, ou seja que existe depois do último 
+elemento de uma lista, proibido no JSON. O mesmo problema ocorre novamente no código, 
+onde a vírgula final existe no final de um array.
 
-### Escrevendo JSON com python
+Existem websites voltados unicamente para a validação sintática e na depuração do 
+JSON enquanto o dev escreve, o [JsonLint] por exemplo faz isso, garante que o modelo
+esteja formalmente correto. É preciso destacar porém, que estes sites corrigem apenas
+erros avulsos de sintaxe por exemplo, e não a "lógica" do modelo, para isso existem
+os Schemas.
 
-Python suporta o formato JSON nativamente através do módulo `json`, que foi criado
-especificamente para ler e escrever strings formatadas como JSON. Portanto, é muito
-conveniente converter *data types* python para dados JSON e vice-versa.
+### Schema JSON
+<!--https://json-schema.org/overview/what-is-jsonschema-->
+JSON Schema é um padrão para definir a estrutura e regras de dados JSON. A validação 
+JSON checa se o arquivo está conforme o esperado pelo SCHEMA, assim mantendo o documento
+organizado de maneira previsível. Por isso, entenda o schema como um guia estrutural para 
+o JSON. 
 
-O formato JSON pode ser útil quando se quer salvar dados fora do seu programa python,
-ao invés de criar toda uma database, pode ser utilizado um arquivo JSON para armazenar 
-esses dados. Para escrever dados python a um arquivo JSON se utilza o `json.dump()`.
-Mantenha a atenção, pois diferentes *data types* python como listas e tuples são convertidas
-para o mesmo tipo de JSON array, o que pode causar problemas caso se deseje transformar 
-os dados de volta ao python. 
+JSON Schema usa um documento JSON separado que provêm a planta para os dados JSON, o que
+significa que o schema por si só é legível por máquinas e humanos, abaixo um exemplo de 
+JSON Schema:
 
-<!--Escolhi não incluir um código exemplo, para manter o foco teórico, sem transformar
-essa seção em um how-to ou guia prático-->
+```JSON
+{
 
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Example user object",
+    "description": "This is an example",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "description": "This is the ID of the user",
+            "format": "UUID"
+        },
+        "name": {
+            "type": "string",
+            "description": "This is the full name of the user",
+        },
+        "age": {
+            "type": "number",
+            "description": "This is the age of the user. We only allow adult users.",
+            "minimum": 18,
+        },
+       "address": {
+            "type": "object",
+            "properties": {
+                "streetAddress": { "type": "string" },
+                "city": { "type": "string" },
+                "state": { "type": "string" },
+                "zipcode": { "type": "string" },
+                "country": { "type": "string" }
+            },
+            "required": ["streetAddress", "city", "state", "zipcode", "country"]
+            },
+        "interests": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": ["sports", "music", "movies", "books"]
+            }
+        },
+        "createdAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+    },
+    "required": ["id", "name", "address"]
+}
+```
 
-## Como consumir JSON
+Como podemos observar, o schema acima fornece muito contexto ao nosso JSON. Definindo
+claramente o *type* e limites de cada campo, fornecendo descrições onde necessário. Por
+exemplo, se possuissemos dados contendo um user de 16 anos, seria invalidado pois o 
+schema especifica que users devem ter pelo menos 18 anos. 
 
-Ao consumir um JSON, é boa prática começar validando sua estrutura básica e entendendo 
-qual é o elemento raíz com `json.loads`, evite assumir que esses dados já estão no formato 
-esperado. Sempre trate campos opcionais e valores `null`, pois os JSONs reais raramente 
-são perfeitamente consistentes. Também é recomendável evitar acessar chaves diretamente 
-sem verificação, use métodos que lidem melhor com ausências como `dict.get()` e a 
-normalização de estruturas aninhadas antes de qualquer análise mais profunda. 
+Existem diversas situações para usar de um JSON Schema, como os *adresses*, *blog posts*, 
+calendário, entre muitos outros. O [link] mostra mais exemplos para se aprofundar.
+
 
 ### Caso de uso: JSON em API com python
 
@@ -135,7 +181,7 @@ o analista deseje o payload ele codificará: `requests.post(url, json=my_dict)`.
 
 
 
-
-
+[JsonLint]: https://jsonlint.com/
+[link]: https://json-schema.org/learn/json-schema-examples
 [key:value]: https://hazelcast.com/foundations/data-and-middleware-technologies/key-value-store/
 [repositório]: https://github.com/seplan-rr/guia-do-analista-de-dados
