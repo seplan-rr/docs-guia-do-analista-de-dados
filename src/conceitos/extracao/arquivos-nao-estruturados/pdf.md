@@ -14,7 +14,7 @@ em extração e construção dos dados. Em outras palavras: é difícil.
 
 O formato PDF é um dos mais comuns e mais utilizados no dia a dia, é utilizado para
 compartilhar documentos em um formato paginado, voltado para a visualização humana, desta 
-forma, pense no PDF como o papel eletrônico. Neste documento exploraremos a [estrutura](#estrutura-do-pdf) do formato e formas de [trabalhar](#pdf-na-análise-de-dados) como analista de dados utilizando o PDF. 
+forma, pense no PDF como o papel eletrônico. Neste documento exploraremos a [estrutura](#estrutura-do-pdf) do formato e formas de [transformá-lo](#alterando-o-pdf) como analista de dados utilizando o PDF. 
 
 ## Estrutura do PDF
 <!--https://medium.com/@jberkenbilt/the-structure-of-a-pdf-file-6f08114a58f6-->
@@ -136,49 +136,46 @@ publicados em PDF porque o foco é a leitura humana, padronização visual e imp
 análise, porém, o dado está "fixo" numa representação gráfica, o que dificulta muito a 
 extração.
 
-A seguir exploramos como então podemos extrair dados de um PDF.
+## Alterando o PDF
 
-## PDF na análise de dados
-<!--https://medium.com/@bojjasharanya/automating-pdf-data-extraction-your-ultimate-guide-for-choosing-the-suitable-library-d87a3dcf27e5-->
-Diversos são os fatores que complicam a extração de dados de um arquivo PDF, porém
-existem meios que podem facilitar a vida do analista quando lidar com o formato.
-Destacamos o uso de bibliotecas criadas justamente para aplicação em PDFs. A ferramenta
-correta pode simplificar o processo de extração, melhorar a precisão e poupar tempo.
+### PDF/A
 
-### Importância da biblioteca
+PDF/A é o formato padrão para o arquivamento de documentos eletrônicos, permitindo que
+sejam visualizados em sua forma original independente do software. PDF/A é um subconjunto
+de PDF que se difere na maneira como proíbe recursos inadequados para seu armazenamento
+em longo-prazo. É auto-contido, ou seja pode ser visualizado e reproduzido inalterado
+independete do aparelho utilizado. 
 
-Primeiramente, o analista deve ter conhecimento de quais desafios o PDF que deseja
-extrair irá apresentar, pois diferentes bibliotecas lidam diferentemente com certos
-aspectos do PDF, ou seja, o primeiro passo é reconher qual biblioteca é a correta
-para a situação. 
+Algumas das exigências do PDF/A abaixo:
 
-A seguir, listamos algumas das mais populares e úteis bibliotecas para extração de 
-dados PDF:
+- Todas as fontes devem estar embutidas
+- Não pode depender de conteúdo externo
+- Não pode usar JavaScript
+- Não pode conter criptografia
+- Os metadados devem ser padronizados (XMP)
 
-- **PyMuPDF (fitz)**: União do Python com [MuPDF], um leve visualizador de PDF. Oferece 
-extração de texto eficiente, extração de imagem e processamento de dados por página. 
-Eficiente para atividades "simples" e feitas com rapidez, como extração de texto.
+O PDF/A é um formato usado massivamente pelo setor acadêmico, tanto pela sua capacidade
+de preservar os artigos científicos para prosperidade quanto pela sua compatibilidade com 
+caracteres especiais de fórmulas matemáticas. Uma das vantagens do PDF/A seria a integração
+global de seu conteúdo, pois o texto é apresentado corretamente em qualquer aparelho, além
+de ser relativamente simples de ser convertido para Word, HTML e *e-Books*.
 
-- **PyPDF2**: Uma biblioteca python que pode dividir, cortar e transformar páginas 
-PDF. Eficiente para extração de texto e manipulação de múltiplos PDF, pois é simples
-de realizar `merges` entre PDFs.
+### OCR
+<!--fonte: https://medium.com/@onepdf2023/what-is-ocr-and-how-can-it-improve-your-pdfs-aae17c672663-->
+OCR (Optical Character Recognition) é um processo que escaneia e analisa automaticamente 
+escrita a mão e converte para uma fonte digital. Entenda como um processo que transforma
+imagens em texto e que pode muitas vezes ser útil ao se trabalhar com PDFs. Uma das principais
+formas de uso do OCR seria para lidar com *scans* por exemplo escaneamentos de revistas, 
+passaportes, cartas, assinaturas, entre outros diversos documentos. 
 
-- **PDFMiner**: Ferramenta voltada a extração de dados em texto no PDF, suporta 
-personalização robusta. Bilblioteca relativamente complexa, mas oferece controle preciso
-sobre o processo de extração, excelente para mais controle e obtenção de dados.
-
-O analista, essencialmente, deve experimentar e testar diferentes bibliotecas para as
-diferentes situações em que deva extrair dados de um PDF, priorizando fatores como
-velocidade, precisão e facilidade de uso. Não deve ter medo ou receio de consultar
-[guias] e [fóruns] para tirar dúvidas.
-
-
+O primeiro passo para utilizar do OCR é selecionar uma ferramenta de transformação de PDF
+com a funcionalidade embutida, o [OnePDF] é um bom exemplo, pois além do suporte ao OCR
+ele é capaz de converter arquivos de PDF e para PDF sem comprometer a legibilidade. 
 
 
 
-[fóruns]: https://dev.to/mhamzap10/5-best-python-pdf-libraries-every-net-developer-should-know-25b9
-[guias]: https://onlyoneaman.medium.com/i-tested-7-python-pdf-extractors-so-you-dont-have-to-2025-edition-c88013922257
-[MuPDF]: https://mupdf.readthedocs.io/en/1.27.1/?_gl=1*ment2z*_ga*MTUzNTMzMTIwMS4xNzcwOTk1MDYx*_ga_JZTN4VTL9M*czE3NzA5OTUwNjAkbzEkZzAkdDE3NzA5OTUwNjMkajYwJGwwJGgw
+
+[OnePDF]: https://www.onepdf.online/br
 [qpdf]: https://qpdf.sourceforge.io/
 [stream]: https://pikepdf.readthedocs.io/en/latest/topics/streams.html
 [repositório]: https://github.com/seplan-rr/guia-do-analista-de-dados
