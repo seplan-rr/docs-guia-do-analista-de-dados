@@ -9,3 +9,7 @@ description = "Guia do analista de dados da SEPLAN/RR, com foco em automatiza√ß√
 input-404 = "404.md"
 # hash-files = true
 # copy-fonts = true
+additional-js = [
+  "custom_scripts/highlightjs-line-numbers.js",
+  "custom_scripts/custom.js",
+]
