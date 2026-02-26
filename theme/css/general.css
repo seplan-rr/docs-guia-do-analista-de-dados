@@ -177,35 +177,35 @@ html:not(.js) .page-wrapper,
   text-decoration: none;
 }
 
-table {
+table:not(.hljs-ln) {
   margin: 0 auto;
   border-collapse: collapse;
 }
 
-table td {
+table:not(.hljs-ln) td {
   padding: 3px 20px;
   border: 1px var(--table-border-color) solid;
 }
 
-table thead {
+table:not(.hljs-ln) thead {
   background: var(--table-header-bg);
 }
 
-table thead td {
+table:not(.hljs-ln) thead td {
   font-weight: 700;
   border: none;
 }
 
-table thead th {
+table:not(.hljs-ln) thead th {
   padding: 3px 20px;
 }
 
-table thead tr {
+table:not(.hljs-ln) thead tr {
   border: 1px var(--table-header-bg) solid;
 }
 
 /* Alternate background colors for rows */
-table tbody tr:nth-child(2n) {
+table:not(.hljs-ln) tbody tr:nth-child(2n) {
   background: var(--table-alternate-bg);
 }
 

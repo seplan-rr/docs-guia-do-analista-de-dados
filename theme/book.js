@@ -829,7 +829,9 @@ aria-label="Show hidden lines"></button>';
     })();
 
     document.addEventListener("DOMContentLoaded", () => {
-      themeToggle = document.getElementById("mdbook-theme-toggle");
-      themeToggle.remove();
+      const themeToggle = document.getElementById("mdbook-theme-toggle");
+      if (themeToggle) {
+          themeToggle.remove();
+      }
     })
 })();
